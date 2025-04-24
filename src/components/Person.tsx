@@ -1,6 +1,6 @@
 
 import { useRef } from "react";
-import { Mesh } from "three";
+import { Mesh, Group } from "three";
 import { useFrame } from "@react-three/fiber";
 
 interface PersonProps {
@@ -10,18 +10,107 @@ interface PersonProps {
 }
 
 export const Person = ({ position, color, status }: PersonProps) => {
-  const meshRef = useRef<Mesh>(null);
+  const groupRef = useRef<Group>(null);
 
   useFrame((state) => {
-    if (meshRef.current && status === "walking") {
-      meshRef.current.position.y = Math.sin(state.clock.elapsedTime * 2) * 0.1 + 0.5;
+    if (groupRef.current && status === "walking") {
+      groupRef.current.position.y = Math.sin(state.clock.elapsedTime * 2) * 0.1 + 0.5;
     }
   });
 
+  const renderStickFigure = () => {
+    switch (status) {
+      case "walking":
+        return (
+          <>
+            {/* Head */}
+            <mesh position={[0, 0.9, 0]}>
+              <sphereGeometry args={[0.1]} />
+              <meshStandardMaterial color={color} />
+            </mesh>
+            {/* Body */}
+            <mesh position={[0, 0.5, 0]}>
+              <cylinderGeometry args={[0.02, 0.02, 0.6]} />
+              <meshStandardMaterial color={color} />
+            </mesh>
+            {/* Arms */}
+            <mesh position={[0, 0.7, 0]} rotation={[0, 0, Math.PI / 4]}>
+              <cylinderGeometry args={[0.02, 0.02, 0.4]} />
+              <meshStandardMaterial color={color} />
+            </mesh>
+            <mesh position={[0, 0.7, 0]} rotation={[0, 0, -Math.PI / 4]}>
+              <cylinderGeometry args={[0.02, 0.02, 0.4]} />
+              <meshStandardMaterial color={color} />
+            </mesh>
+            {/* Legs */}
+            <mesh position={[0, 0.3, 0]} rotation={[0, 0, Math.PI / 6]}>
+              <cylinderGeometry args={[0.02, 0.02, 0.4]} />
+              <meshStandardMaterial color={color} />
+            </mesh>
+            <mesh position={[0, 0.3, 0]} rotation={[0, 0, -Math.PI / 6]}>
+              <cylinderGeometry args={[0.02, 0.02, 0.4]} />
+              <meshStandardMaterial color={color} />
+            </mesh>
+          </>
+        );
+      case "crouching":
+        return (
+          <>
+            {/* Head */}
+            <mesh position={[0, 0.5, 0]}>
+              <sphereGeometry args={[0.1]} />
+              <meshStandardMaterial color={color} />
+            </mesh>
+            {/* Body */}
+            <mesh position={[0, 0.3, 0]} rotation={[0, 0, Math.PI / 6]}>
+              <cylinderGeometry args={[0.02, 0.02, 0.4]} />
+              <meshStandardMaterial color={color} />
+            </mesh>
+            {/* Arms */}
+            <mesh position={[0, 0.4, 0]} rotation={[0, 0, -Math.PI / 2]}>
+              <cylinderGeometry args={[0.02, 0.02, 0.4]} />
+              <meshStandardMaterial color={color} />
+            </mesh>
+            {/* Legs */}
+            <mesh position={[0, 0.2, 0]} rotation={[0, 0, Math.PI / 2]}>
+              <cylinderGeometry args={[0.02, 0.02, 0.4]} />
+              <meshStandardMaterial color={color} />
+            </mesh>
+          </>
+        );
+      case "lying":
+        return (
+          <>
+            {/* Head */}
+            <mesh position={[0, 0.1, 0]}>
+              <sphereGeometry args={[0.1]} />
+              <meshStandardMaterial color={color} />
+            </mesh>
+            {/* Body */}
+            <mesh position={[0.3, 0.1, 0]} rotation={[0, 0, Math.PI / 2]}>
+              <cylinderGeometry args={[0.02, 0.02, 0.6]} />
+              <meshStandardMaterial color={color} />
+            </mesh>
+            {/* Arms */}
+            <mesh position={[0.3, 0.1, 0]} rotation={[Math.PI / 4, 0, Math.PI / 2]}>
+              <cylinderGeometry args={[0.02, 0.02, 0.4]} />
+              <meshStandardMaterial color={color} />
+            </mesh>
+            {/* Legs */}
+            <mesh position={[0.5, 0.1, 0]} rotation={[0, 0, Math.PI / 2]}>
+              <cylinderGeometry args={[0.02, 0.02, 0.4]} />
+              <meshStandardMaterial color={color} />
+            </mesh>
+          </>
+        );
+      default:
+        return null;
+    }
+  };
+
   return (
-    <mesh ref={meshRef} position={[position[0], status === "lying" ? 0.1 : 0.5, position[2]]}>
-      <sphereGeometry args={[0.2]} />
-      <meshStandardMaterial color={color} />
-    </mesh>
+    <group ref={groupRef} position={position}>
+      {renderStickFigure()}
+    </group>
   );
 };

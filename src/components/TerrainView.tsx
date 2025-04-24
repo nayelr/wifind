@@ -3,7 +3,7 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import { Person } from "./Person";
 
-const people = [
+const people: { position: [number, number, number]; color: string; status: string; }[] = [
   { position: [1.43, 0, 0.785], color: "cyan", status: "walking" },
   { position: [2.67, 0, 1.223], color: "lime", status: "crouching" },
   { position: [1.98, 0, 2.157], color: "yellow", status: "lying" },
