@@ -3,7 +3,7 @@ import { Navigation } from "@/components/Navigation";
 import { TerrainView } from "@/components/TerrainView";
 import { SystemStatus } from "@/components/SystemStatus";
 import { DetectionDetails } from "@/components/DetectionDetails";
-import { ViewControls } from "@/components/ViewControls";
+import { ExportButton } from "@/components/ExportButton";
 
 const Index = () => {
   return (
@@ -35,7 +35,9 @@ const Index = () => {
               </div>
             </div>
             
-            <ViewControls />
+            <div className="flex justify-start mt-4">
+              <ExportButton />
+            </div>
           </div>
         </div>
 

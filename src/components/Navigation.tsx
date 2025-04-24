@@ -1,6 +1,7 @@
 
 import { cn } from "@/lib/utils";
 import { useNavigate, useLocation } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
 
 const navItems = [
   { name: "Live View", path: "/" },
@@ -14,6 +15,16 @@ export const Navigation = () => {
 
   return (
     <nav className="w-48 bg-gray-800 p-4">
+      {location.pathname !== "/" && (
+        <button
+          onClick={() => navigate("/")}
+          className="flex items-center gap-1 text-gray-300 hover:text-white mb-4 px-4 py-2"
+        >
+          <ArrowLeft size={16} />
+          <span>Back to Live View</span>
+        </button>
+      )}
+      
       {navItems.map((item) => (
         <button
           key={item.name}
