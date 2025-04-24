@@ -9,7 +9,7 @@ export const SystemStatus = () => {
           Active
         </span>
       </div>
-      <div>Sensors: 12/12</div>
+      <div>Sensors: 3/3</div>
       <div className="flex items-center gap-1">
         Signal Strength:
         <div className="flex gap-0.5">

@@ -1,6 +1,6 @@
 
 import { useRef } from "react";
-import { Mesh, Group } from "three";
+import { Group } from "three";
 import { useFrame } from "@react-three/fiber";
 
 interface PersonProps {
@@ -33,7 +33,7 @@ export const Person = ({ position, color, status }: PersonProps) => {
               <cylinderGeometry args={[0.02, 0.02, 0.6]} />
               <meshStandardMaterial color={color} />
             </mesh>
-            {/* Arms */}
+            {/* Arms (2) */}
             <mesh position={[0, 0.7, 0]} rotation={[0, 0, Math.PI / 4]}>
               <cylinderGeometry args={[0.02, 0.02, 0.4]} />
               <meshStandardMaterial color={color} />
@@ -42,7 +42,7 @@ export const Person = ({ position, color, status }: PersonProps) => {
               <cylinderGeometry args={[0.02, 0.02, 0.4]} />
               <meshStandardMaterial color={color} />
             </mesh>
-            {/* Legs */}
+            {/* Legs (2) */}
             <mesh position={[0, 0.3, 0]} rotation={[0, 0, Math.PI / 6]}>
               <cylinderGeometry args={[0.02, 0.02, 0.4]} />
               <meshStandardMaterial color={color} />
@@ -63,17 +63,25 @@ export const Person = ({ position, color, status }: PersonProps) => {
             </mesh>
             {/* Body */}
             <mesh position={[0, 0.3, 0]} rotation={[0, 0, Math.PI / 6]}>
-              <cylinderGeometry args={[0.02, 0.02, 0.4]} />
+              <cylinderGeometry args={[0.02, 0.02, 0.3]} />
               <meshStandardMaterial color={color} />
             </mesh>
-            {/* Arms */}
+            {/* Arms (2) */}
             <mesh position={[0, 0.4, 0]} rotation={[0, 0, -Math.PI / 2]}>
               <cylinderGeometry args={[0.02, 0.02, 0.4]} />
               <meshStandardMaterial color={color} />
             </mesh>
-            {/* Legs */}
-            <mesh position={[0, 0.2, 0]} rotation={[0, 0, Math.PI / 2]}>
+            <mesh position={[0, 0.4, 0]} rotation={[0, 0, -Math.PI / 3]}>
               <cylinderGeometry args={[0.02, 0.02, 0.4]} />
+              <meshStandardMaterial color={color} />
+            </mesh>
+            {/* Legs (2) - bent at knees */}
+            <mesh position={[0, 0.2, 0]} rotation={[0, 0, Math.PI / 2]}>
+              <cylinderGeometry args={[0.02, 0.02, 0.3]} />
+              <meshStandardMaterial color={color} />
+            </mesh>
+            <mesh position={[0.15, 0.2, 0]} rotation={[0, 0, Math.PI / 3]}>
+              <cylinderGeometry args={[0.02, 0.02, 0.3]} />
               <meshStandardMaterial color={color} />
             </mesh>
           </>
@@ -91,13 +99,21 @@ export const Person = ({ position, color, status }: PersonProps) => {
               <cylinderGeometry args={[0.02, 0.02, 0.6]} />
               <meshStandardMaterial color={color} />
             </mesh>
-            {/* Arms */}
+            {/* Arms (2) - spread out */}
             <mesh position={[0.3, 0.1, 0]} rotation={[Math.PI / 4, 0, Math.PI / 2]}>
               <cylinderGeometry args={[0.02, 0.02, 0.4]} />
               <meshStandardMaterial color={color} />
             </mesh>
-            {/* Legs */}
-            <mesh position={[0.5, 0.1, 0]} rotation={[0, 0, Math.PI / 2]}>
+            <mesh position={[0.3, 0.1, 0]} rotation={[-Math.PI / 4, 0, Math.PI / 2]}>
+              <cylinderGeometry args={[0.02, 0.02, 0.4]} />
+              <meshStandardMaterial color={color} />
+            </mesh>
+            {/* Legs (2) - straight */}
+            <mesh position={[0.6, 0.1, 0]} rotation={[0, 0, Math.PI / 2]}>
+              <cylinderGeometry args={[0.02, 0.02, 0.4]} />
+              <meshStandardMaterial color={color} />
+            </mesh>
+            <mesh position={[0.6, 0.1, 0.1]} rotation={[0, 0, Math.PI / 2]}>
               <cylinderGeometry args={[0.02, 0.02, 0.4]} />
               <meshStandardMaterial color={color} />
             </mesh>
